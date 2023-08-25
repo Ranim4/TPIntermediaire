@@ -40,4 +40,11 @@ public class FavService implements InterFavoriteService {
                 .sorted(Comparator.comparing(FavListItem::getUpdate))
                 .toList();
     }
+
+    @Override
+    public List<FavListItem> filterByCategory( String category) {
+        return findAll().stream()
+                .filter(fav -> fav.getCategory().getLabel().equals(category))
+                .toList();
+    }
 }

@@ -9,4 +9,5 @@ public interface InterFavoriteService {
     List<FavListItem> findAll();
     List<FavListItem> sortByCategory();
     List<FavListItem> sortByDate();
+    List<FavListItem> filterByCategory(String category);
 }
