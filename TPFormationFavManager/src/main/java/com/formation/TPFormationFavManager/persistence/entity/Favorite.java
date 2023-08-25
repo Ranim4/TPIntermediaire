@@ -21,8 +21,8 @@ public class Favorite {
     private Long id;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    //@JoinColumn(referencedColumnName = "id", table = "category")
+    //@JoinColumn(name = "category_id")
+    @JoinColumn(nullable = false)
     private Category category;
 
     @Column(name = "Link")
