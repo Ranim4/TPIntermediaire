@@ -1,10 +1,25 @@
 package com.formation.TPFormationFavManager.controller;
 
+import com.formation.TPFormationFavManager.dto.FavListItem;
+import com.formation.TPFormationFavManager.service.impl.FavService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/favorite")
 public class FavController {
 
+    private final FavService favService;
+
+    public FavController(FavService favService) {
+        this.favService = favService;
+    }
+
+    @GetMapping
+    List<FavListItem> findAll(){
+        return favService.findAll();
+    }
 }

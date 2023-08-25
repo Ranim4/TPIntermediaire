@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Favorite")
+@Table(name = "favorite")
 @Getter
 @Setter
 @ToString
@@ -20,8 +20,9 @@ public class Favorite {
     @Column(name = "Id", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    //@JoinColumn(referencedColumnName = "id", table = "category")
     private Category category;
 
     @Column(name = "Link")
