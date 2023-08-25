@@ -7,4 +7,6 @@ import java.util.List;
 public interface InterFavoriteService {
 
     List<FavListItem> findAll();
+    List<FavListItem> sortByCategory();
+    List<FavListItem> sortByDate();
 }

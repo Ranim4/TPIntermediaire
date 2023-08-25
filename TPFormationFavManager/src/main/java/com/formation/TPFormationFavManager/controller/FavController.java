@@ -22,4 +22,14 @@ public class FavController {
     List<FavListItem> findAll(){
         return favService.findAll();
     }
+
+    @GetMapping(path = "/sortedByCat")
+    List<FavListItem> sortByCategory(){
+        return favService.sortByCategory();
+    }
+
+    @GetMapping(path = "/sortedByDate")
+    List<FavListItem> sortByDate(){
+        return favService.sortByDate();
+    }
 }
