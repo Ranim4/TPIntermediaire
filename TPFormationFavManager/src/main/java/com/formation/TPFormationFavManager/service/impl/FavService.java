@@ -1,8 +1,13 @@
 package com.formation.TPFormationFavManager.service.impl;
 
 import com.formation.TPFormationFavManager.dto.FavListItem;
+import com.formation.TPFormationFavManager.exception.NotFoundException;
+import com.formation.TPFormationFavManager.persistence.entity.Category;
+import com.formation.TPFormationFavManager.persistence.entity.Favorite;
 import com.formation.TPFormationFavManager.persistence.repository.FavoriteRepository;
 import com.formation.TPFormationFavManager.service.InterFavoriteService;
+import jakarta.transaction.Transactional;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -46,5 +51,12 @@ public class FavService implements InterFavoriteService {
         return findAll().stream()
                 .filter(fav -> fav.getCategory().getLabel().equals(category))
                 .toList();
+    }
+
+    @Override
+    @Transactional
+    public ResponseEntity<String> removeSelectedFav(List <Long> idsToDelete) {
+        idsToDelete.forEach(id -> favoriteRepository.deleteById(id));
+        return ResponseEntity.ok("Selected favorites deleted successfully");
     }
 }
