@@ -24,6 +24,4 @@ public class Category {
     @Column(name = "label")
     private String label;
 
-   // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<Favorite> favorites = new ArrayList<>();
 }

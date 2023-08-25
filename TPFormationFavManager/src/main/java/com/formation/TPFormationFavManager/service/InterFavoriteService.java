@@ -1,5 +1,7 @@
 package com.formation.TPFormationFavManager.service;
 
+import com.formation.TPFormationFavManager.dto.FavDefinition;
+import com.formation.TPFormationFavManager.dto.FavItem;
 import com.formation.TPFormationFavManager.dto.FavListItem;
 import org.springframework.http.ResponseEntity;
 
@@ -12,4 +14,5 @@ public interface InterFavoriteService {
     List<FavListItem> sortByDate();
     List<FavListItem> filterByCategory(String category);
     ResponseEntity<String> removeSelectedFav(List <Long> idsToDelete);
+    FavItem addFavorite (Long idCategory, FavDefinition favDefinition);
 }

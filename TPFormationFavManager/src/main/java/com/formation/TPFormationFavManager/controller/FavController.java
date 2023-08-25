@@ -1,5 +1,7 @@
 package com.formation.TPFormationFavManager.controller;
 
+import com.formation.TPFormationFavManager.dto.FavDefinition;
+import com.formation.TPFormationFavManager.dto.FavItem;
 import com.formation.TPFormationFavManager.dto.FavListItem;
 import com.formation.TPFormationFavManager.service.impl.FavService;
 import org.springframework.http.ResponseEntity;
@@ -41,5 +43,10 @@ public class FavController {
     public ResponseEntity<String> removeSelectedFav(@PathVariable List<Long> idsToDelete){
         favService.removeSelectedFav(idsToDelete);
         return ResponseEntity.ok("Selected favorites deleted successfully");
+    }
+
+    @PostMapping(path = "/{idCategory}/favorite")
+    public FavItem addFavorite(@PathVariable Long idCategory, @RequestBody FavDefinition favDefinition){
+        return favService.addFavorite(idCategory, favDefinition);
     }
 }
