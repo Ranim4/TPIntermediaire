@@ -20,14 +20,13 @@ public class Favorite {
     @Column(name = "Id", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //@JoinColumn(name = "category_id")
-    @JoinColumn(nullable = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @Column(name = "Link")
     private String link;
 
-    @Column(name = "Updated_at")
+    @Column(name = "Updated_at", columnDefinition = "date")
     private Date update;
 }
