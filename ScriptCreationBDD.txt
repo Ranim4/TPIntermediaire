@@ -1,0 +1,13 @@
+-- Création de la base de données
+CREATE DATABASE favorite_manager;
+
+-- Sélection de la base de données
+USE favorite_manager;
+
+-- Création de la table 'table'
+CREATE TABLE table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category VARCHAR(255),
+    link VARCHAR(255),
+    updated_at DATE
+);
