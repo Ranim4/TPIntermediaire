@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/favorite")
+@RequestMapping(path = "/api/favorites")
 public class FavController {
 
     private final FavService favService;
@@ -48,5 +48,11 @@ public class FavController {
     @PostMapping(path = "/{idCategory}/favorite")
     public FavItem addFavorite(@PathVariable Long idCategory, @RequestBody FavDefinition favDefinition){
         return favService.addFavorite(idCategory, favDefinition);
+    }
+
+    // Returns the total number of saved favorites
+    @GetMapping(path = "/totalNumber")
+    public Long totalNumberFav() {
+        return favService.totalNumberFav();
     }
 }

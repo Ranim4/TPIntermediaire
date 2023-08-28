@@ -79,4 +79,9 @@ public class FavService implements InterFavoriteService {
         return new FavItem(addfavorite.getId(), addfavorite.getCategory(),
                 addfavorite.getLink(), addfavorite.getUpdate());
     }
+
+    @Override
+    public Long totalNumberFav() {
+        return findAll().stream().count();
+    }
 }
