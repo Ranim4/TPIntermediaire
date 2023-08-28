@@ -55,4 +55,10 @@ public class FavController {
     public Long totalNumberFav() {
         return favService.totalNumberFav();
     }
+
+    // Returns the total number of selected favorites
+    @GetMapping(path = "/{idsSelectedFav}/totalNumber")
+    public Long slectedNumberFav(@PathVariable List<Long> idsSelectedFav) {
+        return favService.slectedNumberFav(idsSelectedFav);
+    }
 }

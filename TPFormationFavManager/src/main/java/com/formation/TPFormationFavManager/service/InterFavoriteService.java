@@ -16,4 +16,5 @@ public interface InterFavoriteService {
     ResponseEntity<String> removeSelectedFav(List <Long> idsToDelete);
     FavItem addFavorite (Long idCategory, FavDefinition favDefinition);
     Long totalNumberFav();
+    Long slectedNumberFav(List <Long> idsSelectedFav);
 }
