@@ -1,5 +1,6 @@
 package com.formation.TPFormationFavManager.service.impl;
 
+import com.formation.TPFormationFavManager.dto.CategoryListItem;
 import com.formation.TPFormationFavManager.dto.FavDefinition;
 import com.formation.TPFormationFavManager.dto.FavItem;
 import com.formation.TPFormationFavManager.dto.FavListItem;
@@ -94,5 +95,13 @@ public class FavService implements InterFavoriteService {
     @Override
     public Long slectedNumberFav(List<Long> idsSelectedFav) {
         return idsSelectedFav.stream().count();
+    }
+
+    @Override
+    public List<CategoryListItem> findAllCategory() {
+        return categoryRepository.findAll()
+                .stream() //get a stream of list elements, on which we can apply various operations.
+                .map(c -> new CategoryListItem(c.getId(), c.getLabel())) // transform each item in the stream (category) into CategoryListItem
+                .toList(); //to collect the items from the resulting stream and store them in a new list.
     }
 }

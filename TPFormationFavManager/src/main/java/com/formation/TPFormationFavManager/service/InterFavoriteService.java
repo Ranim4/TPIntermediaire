@@ -1,5 +1,6 @@
 package com.formation.TPFormationFavManager.service;
 
+import com.formation.TPFormationFavManager.dto.CategoryListItem;
 import com.formation.TPFormationFavManager.dto.FavDefinition;
 import com.formation.TPFormationFavManager.dto.FavItem;
 import com.formation.TPFormationFavManager.dto.FavListItem;
@@ -17,4 +18,5 @@ public interface InterFavoriteService {
     FavItem addFavorite (Long idCategory, FavDefinition favDefinition);
     Long totalNumberFav();
     Long slectedNumberFav(List <Long> idsSelectedFav);
+    List<CategoryListItem> findAllCategory();
 }

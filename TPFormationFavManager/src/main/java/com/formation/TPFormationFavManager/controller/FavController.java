@@ -1,5 +1,6 @@
 package com.formation.TPFormationFavManager.controller;
 
+import com.formation.TPFormationFavManager.dto.CategoryListItem;
 import com.formation.TPFormationFavManager.dto.FavDefinition;
 import com.formation.TPFormationFavManager.dto.FavItem;
 import com.formation.TPFormationFavManager.dto.FavListItem;
@@ -60,5 +61,10 @@ public class FavController {
     @GetMapping(path = "/{idsSelectedFav}/totalNumber")
     public Long slectedNumberFav(@PathVariable List<Long> idsSelectedFav) {
         return favService.slectedNumberFav(idsSelectedFav);
+    }
+
+    @GetMapping(path = "/categories")
+    public List<CategoryListItem> findAllCategory() {
+        return favService.findAllCategory();
     }
 }
