@@ -3,6 +3,7 @@ const removeButton = document.getElementById("remove-selected-favorites");
 const checkboxes = document.querySelectorAll(".favorite-checkbox");
 let idsToDelete = [];
 const categoryList = document.getElementById("categorySelect");
+const sortedList = document.getElementById("sortedBy");
 
 //Function to load the list of favorites
 function loadFavorites() {
@@ -74,7 +75,7 @@ function filterFavoritesByCategory(selectedCategory) {
     .then((response) => response.json())
     .then((data) => {
       displayFavorites(data);
-      console.log(data);
+     // console.log(data);
     })
     .catch((error) => {
       console.error("An error occurred during the request:", error);
@@ -83,3 +84,32 @@ function filterFavoritesByCategory(selectedCategory) {
 }
 
 loadCategories();
+
+  // Ajouter un écouteur d'événement pour le changement trier la list de favories
+  sortedList.addEventListener("change", () => {
+    const selectedCategory = sortedList.value;
+    //console.log(selectedCategory);
+    if (selectedCategory === "category") {
+        sortListBy("sortedByCat");
+    }
+    if (selectedCategory === "date") {
+        sortListBy("sortedByDate");
+    }
+ else {
+      loadFavorites();
+    }
+  });
+
+  function sortListBy(sortBy) {
+    console.log(sortBy);
+  fetch(`http://localhost:8080/api/favorites/${sortBy}`)
+  .then((response) => response.json())
+  .then((data) => {
+    displayFavorites(data);
+    //loadFavorites();
+  })
+  .catch((error) => {
+    console.error("An error occurred during the request:", error);
+    console.log(error);
+  });
+}

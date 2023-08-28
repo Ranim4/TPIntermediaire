@@ -38,8 +38,7 @@ public class FavService implements InterFavoriteService {
     @Override
     public List<FavListItem> sortByCategory() {
         return findAll().stream()
-                .sorted((item1, item2)->item1.getCategory().getLabel().
-                        compareTo(item2.getCategory().getLabel())) //sort the items in the stream according to category Label
+                .sorted(Comparator.comparing(item -> item.getCategory().getLabel())) //sort the items in the stream according to category Label
                 .toList();
 
     }
