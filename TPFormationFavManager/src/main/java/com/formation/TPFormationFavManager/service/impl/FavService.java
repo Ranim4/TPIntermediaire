@@ -56,7 +56,7 @@ public class FavService implements InterFavoriteService {
     @Override
     public List<FavListItem> filterByCategory(String category) {
         return findAll().stream()
-                .filter(fav -> fav.getCategory().getLabel().equals(category)) //to filter the elements of the stream. Only items that satisfy the condition (CategoryLabel = given category) will be included in the resulting stream.
+                .filter(fav -> fav.getCategory().getLabel().equalsIgnoreCase(category)) //to filter the elements of the stream. Only items that satisfy the condition (CategoryLabel = given category) will be included in the resulting stream.
                 .toList();
     }
 
