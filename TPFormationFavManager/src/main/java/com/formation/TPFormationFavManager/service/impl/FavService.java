@@ -84,4 +84,9 @@ public class FavService implements InterFavoriteService {
     public Long totalNumberFav() {
         return findAll().stream().count();
     }
+
+    @Override
+    public Long slectedNumberFav(List<Long> idsSelectedFav) {
+        return idsSelectedFav.stream().count();
+    }
 }
