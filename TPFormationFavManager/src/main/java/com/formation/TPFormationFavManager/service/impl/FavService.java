@@ -10,6 +10,7 @@ import com.formation.TPFormationFavManager.persistence.entity.Favorite;
 import com.formation.TPFormationFavManager.persistence.repository.CategoryRepository;
 import com.formation.TPFormationFavManager.persistence.repository.FavoriteRepository;
 import com.formation.TPFormationFavManager.service.InterFavoriteService;
+import com.formation.TPFormationFavManager.utils.DTOHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,15 @@ public class FavService implements InterFavoriteService {
     private FavoriteRepository favoriteRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private DTOHelper dtoHelper;
 
     //list all favorites
     @Override
     public List<FavListItem> findAll() {
         return favoriteRepository.findAll()
                 .stream() //get a stream of list elements, on which we can apply various operations.
-                .map(f -> new FavListItem(f.getId(), f.getCategory(), f.getLink(), f.getUpdate())) // transform each item in the stream (favorite) into FavListItem
+                .map(f -> dtoHelper.toFavListItem(f)) // transform each item in the stream (favorite) into FavListItem
                 .toList(); //to collect the items from the resulting stream and store them in a new list.
     }
 
@@ -80,8 +83,7 @@ public class FavService implements InterFavoriteService {
         addfavorite.setCategory(category);
 
         favoriteRepository.save(addfavorite); //add the new favorite to the favorites list
-        return new FavItem(addfavorite.getId(), addfavorite.getCategory(),
-                addfavorite.getLink(), addfavorite.getUpdate()); //convert favorite -> FavItem
+        return dtoHelper.toFavItem(addfavorite);
     }
 
     //Calculate the total number of existing favorites
@@ -100,7 +102,7 @@ public class FavService implements InterFavoriteService {
     public List<CategoryListItem> findAllCategory() {
         return categoryRepository.findAll()
                 .stream() //get a stream of list elements, on which we can apply various operations.
-                .map(c -> new CategoryListItem(c.getId(), c.getLabel())) // transform each item in the stream (category) into CategoryListItem
+                .map(c -> dtoHelper.toCategoryListItem(c)) // transform each item in the stream (category) into CategoryListItem
                 .toList(); //to collect the items from the resulting stream and store them in a new list.
     }
 }
